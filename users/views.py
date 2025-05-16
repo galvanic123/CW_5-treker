@@ -3,7 +3,7 @@ from drf_yasg.utils import swagger_auto_schema
 from rest_framework import viewsets
 from rest_framework.permissions import AllowAny, IsAdminUser
 
-from users.models import User
+from users.models import CustomsUser
 from users.serializers import UserSerializer
 
 
@@ -40,7 +40,7 @@ from users.serializers import UserSerializer
 class UserViewSet(viewsets.ModelViewSet):
     """CRUD для регистрации пользователя."""
 
-    queryset = User.objects.all()
+    queryset = CustomsUser.objects.all()
     serializer_class = UserSerializer
     # permission_classes = [IsAdminUser]
     permission_classes = [AllowAny]
