@@ -5,7 +5,6 @@ from rest_framework.test import APITestCase
 from treker.models import Habit
 from users.models import CustomsUser
 
-
 class HabitTestCase(APITestCase):
     """Тестирование привычки."""
 
@@ -27,7 +26,7 @@ class HabitTestCase(APITestCase):
 
     def test_habit_retrieve(self):
         """Тест на получение привычки."""
-        url = reverse("habits:habit-detail", args=(self.habit.pk,))
+        url = reverse("treker:habit-detail", args=(self.habit.pk,))
         response = self.client.get(url)
         # print(response.json())
         data = response.json()
@@ -36,7 +35,7 @@ class HabitTestCase(APITestCase):
 
     def test_habit_create(self):
         """Тест на создание привычки."""
-        url = reverse("habits:habit-list")
+        url = reverse("treker:habit-list")
         data = {
             "habit": "test",
             "place": "test",
@@ -55,17 +54,17 @@ class HabitTestCase(APITestCase):
 
     def test_habit_update(self):
         """Тест на обновление привычки."""
-        url = reverse("habits:habit-list", args=(self.habit.pk,))
-        data = {"habit": "update test"}
+        url = reverse("treker:habit-list", args=(self.habit.pk,))
+        data = {"habit": "update_test"}
         response = self.client.patch(url, data)
-        # print(response.json())
+        print(response.json())
         data = response.json()
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(data.get("habit"), "update test")
+        self.assertEqual(data.get("habit"), "update_test")
 
     def test_habit_delete(self):
         """Тест на удаление привычки."""
-        url = reverse("habits:habit-detail", args=(self.habit.pk,))
+        url = reverse("treker:habit-detail", args=(self.habit.pk,))
         response = self.client.delete(url)
         # print(response)
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
@@ -73,7 +72,7 @@ class HabitTestCase(APITestCase):
 
     def test_habit_list(self):
         """Тест список привычек."""
-        url = reverse("habits:habit-list")
+        url = reverse("treker:habit-list")
         response = self.client.get(url)
         # print(response.json())
         data = response.json()
