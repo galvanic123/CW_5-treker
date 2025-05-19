@@ -1,7 +1,7 @@
 from django.utils.decorators import method_decorator
 from drf_yasg.utils import swagger_auto_schema
 from rest_framework import viewsets
-from rest_framework.permissions import AllowAny, IsAdminUser
+from rest_framework.permissions import AllowAny
 
 from users.models import CustomsUser
 from users.serializers import UserSerializer
@@ -10,7 +10,7 @@ from users.serializers import UserSerializer
 @method_decorator(
     name="list",
     decorator=swagger_auto_schema(
-        operation_description="Контроллер для получения списка всех пользователей"
+        operation_description="Контроллер для получения " "списка всех пользователей",            # noqa: E501
     ),
 )
 @method_decorator(

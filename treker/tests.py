@@ -5,6 +5,7 @@ from rest_framework.test import APITestCase
 from treker.models import Habit
 from users.models import CustomsUser
 
+
 class HabitTestCase(APITestCase):
     """Тестирование привычки."""
 

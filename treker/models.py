@@ -10,14 +10,18 @@ NULLABLE = {"blank": True, "null": True}
 class Habit(models.Model):
     """Модель привычки"""
 
-    habit = models.CharField(max_length=255, verbose_name="Привычка", **NULLABLE)
+    habit = models.CharField(
+        max_length=255,
+        verbose_name="Привычка",
+        **NULLABLE,
+    )
     owner = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.SET_NULL,
         verbose_name="Автор привычки",
         help_text="Укажите автора привычки",
         related_name="users_habits",
-        **NULLABLE
+        **NULLABLE,
     )
     place = models.CharField(
         max_length=255, verbose_name="Место выполнения привычки", **NULLABLE
@@ -25,13 +29,13 @@ class Habit(models.Model):
     start_time = models.DateTimeField(
         verbose_name="Время старта",
         help_text="Выберете время когда необходимо выполнять привычку",
-        **NULLABLE
+        **NULLABLE,
     )
     action = models.CharField(
         max_length=300,
         verbose_name="Действие привычки",
         help_text="Укажите действие привычки",
-        **NULLABLE
+        **NULLABLE,
     )
     is_pleasant = models.BooleanField(
         default=False,
@@ -43,7 +47,7 @@ class Habit(models.Model):
         on_delete=models.SET_NULL,
         verbose_name="Связанная привычка",
         related_name="related_habits",
-        **NULLABLE
+        **NULLABLE,
     )
 
     periodicity = models.PositiveIntegerField(

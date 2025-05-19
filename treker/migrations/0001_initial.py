@@ -26,7 +26,10 @@ class Migration(migrations.Migration):
                 (
                     "habit",
                     models.CharField(
-                        blank=True, max_length=255, null=True, verbose_name="Привычка"
+                        blank=True,
+                        max_length=255,
+                        null=True,
+                        verbose_name="Привычка",
                     ),
                 ),
                 (

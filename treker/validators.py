@@ -4,7 +4,8 @@ from rest_framework.serializers import ValidationError
 
 
 class FillingTheFieldValidator:
-    """Проверка наличия у приятной привычки связанной привычки или вознаграждения"""
+    """Проверка наличия у приятной привычки
+    связанной привычки или вознаграждения"""
 
     def __init__(self, is_pleasant, related_habit, remuneration):
         self.is_pleasant = is_pleasant
@@ -20,7 +21,8 @@ class FillingTheFieldValidator:
             is_pleasant_field and remuneration_field
         ):
             raise ValidationError(
-                "У приятной привычки не может быть связанной привычки или вознаграждения"
+                "У приятной привычки не может быть "
+                "связанной привычки или вознаграждения"
             )
 
 
@@ -36,12 +38,13 @@ class RelatedOrIsPleasantValidator:
         if habit:
             if not habit.is_pleasant:
                 raise ValidationError(
-                    "Связанная привычка должна иметь признак приятной привычки."
+                    "Связанная привычка должна иметь признак приятной привычки."  # noqa: E501
                 )
 
 
 class RelatedHabitOrRemunerationValidator:
-    """Проверка использования одновременно связанной привычки и вознаграждения."""
+    """Проверка использования одновременно с
+    вязанной привычки и вознаграждения."""
 
     def __init__(self, related_habit, remuneration):
         self.related_habit = related_habit
@@ -53,7 +56,8 @@ class RelatedHabitOrRemunerationValidator:
 
         if related_habit_field and remuneration_field:
             raise ValidationError(
-                "Нельзя использовать одновременно связанную привычку и вознаграждение"
+                "Нельзя использовать одновременно связанную "
+                "привычку и вознаграждение"
             )
 
 
@@ -66,7 +70,9 @@ class TimeLimiterValidator:
     def __call__(self, value):
         time = value.get(self.execution_time)
         if time > timedelta(seconds=120):
-            raise ValidationError("Время выполнения должно быть не больше 120 секунд")
+            raise ValidationError(
+                "Время выполнения должно " "быть не больше 120 секунд"
+            )
 
 
 class PeriodicityValidator:
